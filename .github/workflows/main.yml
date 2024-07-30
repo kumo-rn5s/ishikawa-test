@@ -1,0 +1,23 @@
+name: CDN Cache Purge Test
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: environment
+        description: 'Environment to purge CDN cache'
+        required: true
+
+jobs:
+  purge:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    timeout-minutes: 5
+    steps:
+       - run: >
+            echo "Starting Workflow..."
+#       # ref: https://developer.fastly.com/reference/api/purging/#bulk-purge-tag
+#       - run: >
+#           curl -X POST "https://api.fastly.com/service/${{ secrets.FASTLY_SERVICE_ID }}/purge"
+#           -H "Surrogate-Key:services/web/page services/web/static/service-worker"
+#           -H "Fastly-Key:${{ secrets.FASTLY_API_KEY }}"
+#           -H "Accept:application/json"
